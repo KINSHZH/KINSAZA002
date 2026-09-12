@@ -89,6 +89,20 @@ export default function RequestServiceForm() {
         }
       }
 
+      try {
+        const notifyUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/notify-service-request`;
+        await fetch(notifyUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({ service_request_id: reqData.id }),
+        });
+      } catch {
+        // Email notification is best-effort; don't block the user
+      }
+
       setSubmitted(true);
       setForm(EMPTY_FORM);
       setFiles([]);
