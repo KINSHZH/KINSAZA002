@@ -1,6 +1,6 @@
 export const BUSINESS = {
-  name: 'Home Repair & Field Services',
-  subtitle: 'Masonry * Tuckpointing * Painting * Drywall * Glass Block * Plumbing * Electrical * Gutters * Handyman * Maintenance',
+  name: 'KINSAZA',
+  subtitle: 'Mortar & Tuckpointing * Masonry * Painting * Drywall * Glass Block * Plumbing * Electrical * Gutters * Handyman * Maintenance',
   phone: '216-385-5864',
   phoneHref: 'tel:+12163855864',
   email: 'kinshzh@gmail.com',
@@ -67,14 +67,11 @@ export function getProjectNumber(project: { project_number: string | null; creat
 }
 
 export const SERVICE_CLIP_ART: Record<string, { img: string; anim: string }> = {
-  'mortar-repair': { img: '/clip-tuckpointing.webp', anim: 'jiggle' },
-  'tuckpointing': { img: '/clip-tuckpointing.webp', anim: 'bounce' },
+  'mortar-and-tuckpointing': { img: '/clip-tuckpointing.webp', anim: 'jiggle' },
   'brick-masonry-repair': { img: '/clip-brick.webp', anim: 'wobble' },
   'painting': { img: '/clip-painting.webp', anim: 'shake' },
-  'drywall-repair': { img: '/clip-drywall.webp', anim: 'jiggle' },
-  'drywall-installation': { img: '/clip-drywall.webp', anim: 'bounce' },
-  'glass-block-window-repair': { img: '/clip-glassblock.webp', anim: 'flash' },
-  'glass-block-installation': { img: '/clip-glassblock.webp', anim: 'wobble' },
+  'drywall': { img: '/clip-drywall.webp', anim: 'jiggle' },
+  'glass-block': { img: '/clip-glassblock.webp', anim: 'flash' },
   'light-plumbing': { img: '/clip-plumbing.webp', anim: 'shake' },
   'light-electrical': { img: '/clip-electrical.webp', anim: 'flash' },
   'gutter-cleaning': { img: '/clip-gutter.webp', anim: 'bounce' },
@@ -89,11 +86,7 @@ export function getClipArt(slug: string): { img: string; anim: string } {
 }
 
 export const SERVICE_PHOTOS: Record<string, { url: string; alt: string }> = {
-  'mortar-repair': {
-    url: 'https://images.pexels.com/photos/19688828/pexels-photo-19688828.jpeg?auto=compress&cs=tinysrgb&h=400&w=600',
-    alt: 'Hands laying bricks with mortar in construction',
-  },
-  'tuckpointing': {
+  'mortar-and-tuckpointing': {
     url: 'https://images.pexels.com/photos/10383579/pexels-photo-10383579.jpeg?auto=compress&cs=tinysrgb&h=400&w=600',
     alt: 'Worker applying cement to a wall',
   },
@@ -105,21 +98,13 @@ export const SERVICE_PHOTOS: Record<string, { url: string; alt: string }> = {
     url: 'https://images.pexels.com/photos/1669754/pexels-photo-1669754.jpeg?auto=compress&cs=tinysrgb&h=400&w=600',
     alt: 'Person using a paint roller to apply white paint on a wall',
   },
-  'drywall-repair': {
-    url: 'https://images.pexels.com/photos/36035072/pexels-photo-36035072.jpeg?auto=compress&cs=tinysrgb&h=400&w=600',
-    alt: 'Room under renovation with tools and materials',
-  },
-  'drywall-installation': {
+  'drywall': {
     url: 'https://images.pexels.com/photos/4981812/pexels-photo-4981812.jpeg?auto=compress&cs=tinysrgb&h=400&w=600',
     alt: 'Construction worker installing drywall',
   },
-  'glass-block-window-repair': {
+  'glass-block': {
     url: 'https://images.pexels.com/photos/36035738/pexels-photo-36035738.jpeg?auto=compress&cs=tinysrgb&h=400&w=600',
     alt: 'Glass block window in a stucco wall',
-  },
-  'glass-block-installation': {
-    url: 'https://images.pexels.com/photos/9806886/pexels-photo-9806886.jpeg?auto=compress&cs=tinysrgb&h=400&w=600',
-    alt: 'Glass block window in a white brick wall',
   },
   'light-plumbing': {
     url: 'https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&cs=tinysrgb&h=400&w=600',

@@ -51,7 +51,7 @@ export default function HomePage() {
     <div>
       {/* Welcome heading */}
       <div className="marquee-heading">
-        Welcome to Home Repair & Field Services
+        Welcome to KINSAZA
       </div>
 
       <div className="construction-bar" />

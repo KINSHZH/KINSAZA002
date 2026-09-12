@@ -99,14 +99,11 @@ export interface SiteSettings {
 }
 
 export const SERVICE_LIST = [
-  'Mortar Repair',
-  'Tuckpointing',
+  'Mortar and Tuckpointing',
   'Brick & Masonry Repair',
   'Painting',
-  'Drywall Repair',
-  'Drywall Installation',
-  'Glass Block Window Repair',
-  'Glass Block Installation',
+  'Drywall',
+  'Glass Block',
   'Light Plumbing',
   'Light Electrical',
   'Gutter Cleaning',
