@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
 import { LoadingState, ErrorState, EmptyState, PageHeader } from '@/components/Layout';
 import { getClipArt, getServicePhoto } from '@/lib/constants';
+import { playServiceSound } from '@/lib/serviceSounds';
 import type { Service } from '@/types';
 
 export default function ServicesPage() {
@@ -70,6 +71,7 @@ export default function ServicesPage() {
                     transition: 'border-color 0.15s, background 0.15s',
                   }}
                   aria-expanded={isOpen}
+                  onMouseEnter={() => playServiceSound(service.slug)}
                 >
                   <span style={{ fontSize: '12px', fontFamily: 'monospace', color: '#000' }}>
                     {isOpen ? '[-]' : '[+]'}

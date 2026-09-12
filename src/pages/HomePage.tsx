@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
 import { LoadingState, ErrorState, EmptyState } from '@/components/Layout';
 import { getClipArt, getServicePhoto } from '@/lib/constants';
+import { playServiceSound } from '@/lib/serviceSounds';
 import type { Service, Project, ProjectImage } from '@/types';
 
 export default function HomePage() {
@@ -84,6 +85,7 @@ export default function HomePage() {
               <div key={service.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <button
                   onClick={() => setExpandedService(isOpen ? null : service.id)}
+                  onMouseEnter={() => playServiceSound(service.slug)}
                   className="service-clip"
                   data-anim={clip.anim}
                   aria-expanded={isOpen}
