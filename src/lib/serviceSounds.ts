@@ -162,25 +162,33 @@ function playElectrical() {
   osc.stop(t + 0.5);
 }
 
-// Leaf blower - sustained but gentle
+// Small hand shovel digging - scooping and scraping
 function playGutterCleaning() {
   const ac = getCtx();
   const t = ac.currentTime;
-  const { source, gainNode } = noise(ac, 0.5, 0.06, 700, 'lowpass');
-  gainNode.gain.setValueAtTime(0, t);
-  gainNode.gain.linearRampToValueAtTime(0.06, t + 0.1);
-  gainNode.gain.setValueAtTime(0.06, t + 0.35);
-  gainNode.gain.linearRampToValueAtTime(0, t + 0.5);
-  source.start(t);
-  source.stop(t + 0.5);
-  // Motor hum
-  const { osc, gainNode: og } = toneOsc(ac, 95, 'sawtooth', 0.5, 0.03);
-  og.gain.setValueAtTime(0, t);
-  og.gain.linearRampToValueAtTime(0.03, t + 0.1);
-  og.gain.setValueAtTime(0.03, t + 0.35);
-  og.gain.linearRampToValueAtTime(0, t + 0.5);
-  osc.start(t);
-  osc.stop(t + 0.5);
+  for (let i = 0; i < 2; i++) {
+    const offset = i * 0.28;
+    // Scoop scrape - gritty drag
+    const { source, gainNode } = noise(ac, 0.18, 0.1, 900, 'bandpass');
+    gainNode.gain.setValueAtTime(0, t + offset);
+    gainNode.gain.linearRampToValueAtTime(0.1, t + offset + 0.03);
+    gainNode.gain.linearRampToValueAtTime(0.06, t + offset + 0.12);
+    gainNode.gain.linearRampToValueAtTime(0, t + offset + 0.18);
+    source.start(t + offset);
+    source.stop(t + offset + 0.18);
+    // Metal shovel ting
+    const { osc, gainNode: og } = toneOsc(ac, 280, 'sine', 0.1, 0.05);
+    og.gain.setValueAtTime(0.05, t + offset + 0.02);
+    og.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.1);
+    osc.start(t + offset + 0.02);
+    osc.stop(t + offset + 0.1);
+    // Debris dropping
+    const { source: n2, gainNode: n2g } = noise(ac, 0.08, 0.04, 500, 'lowpass');
+    n2g.gain.setValueAtTime(0.04, t + offset + 0.16);
+    n2g.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.24);
+    n2.start(t + offset + 0.16);
+    n2.stop(t + offset + 0.24);
+  }
 }
 
 // Hammer - a couple of strikes
