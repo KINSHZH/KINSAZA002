@@ -81,14 +81,14 @@ function playPainting() {
   source.stop(t + 0.5);
 }
 
-// Hand sander - buzzy texture noise
+// Hand sander - lower-pitched buzzy texture
 function playDrywall() {
   const ac = getCtx();
   const t = ac.currentTime;
-  const { source, gainNode } = noise(ac, 0.45, 0.1, 3500, 'bandpass');
+  const { source, gainNode } = noise(ac, 0.45, 0.1, 1400, 'bandpass');
   const lfo = ac.createOscillator();
   lfo.type = 'sine';
-  lfo.frequency.value = 18;
+  lfo.frequency.value = 14;
   const lfoGain = ac.createGain();
   lfoGain.gain.value = 0.04;
   lfo.connect(lfoGain);
@@ -103,69 +103,63 @@ function playDrywall() {
   source.stop(t + 0.45);
 }
 
-// Two glasses clinking
+// Two glasses clinking - lower pitch
 function playGlassBlock() {
   const ac = getCtx();
   const t = ac.currentTime;
   for (let i = 0; i < 2; i++) {
     const offset = i * 0.18;
-    const freq = 3200 + i * 400;
-    const { osc, gainNode } = toneOsc(ac, freq, 'sine', 0.3, 0.12);
+    const freq = 1800 + i * 200;
+    const { osc, gainNode } = toneOsc(ac, freq, 'sine', 0.35, 0.12);
     gainNode.gain.setValueAtTime(0.12, t + offset);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.3);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.35);
     osc.start(t + offset);
-    osc.stop(t + offset + 0.3);
-    // harmonic
-    const { osc: o2, gainNode: g2 } = toneOsc(ac, freq * 2.3, 'sine', 0.15, 0.05);
-    g2.gain.setValueAtTime(0.05, t + offset);
-    g2.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.15);
+    osc.stop(t + offset + 0.35);
+    const { osc: o2, gainNode: g2 } = toneOsc(ac, freq * 1.5, 'sine', 0.2, 0.04);
+    g2.gain.setValueAtTime(0.04, t + offset);
+    g2.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.2);
     o2.start(t + offset);
-    o2.stop(t + offset + 0.15);
+    o2.stop(t + offset + 0.2);
   }
 }
 
-// Tightening a screw - metallic ratchet clicks
+// Tightening a screw - lower-pitched metallic ratchet clicks
 function playPlumbing() {
   const ac = getCtx();
   const t = ac.currentTime;
   for (let i = 0; i < 4; i++) {
-    const offset = i * 0.08;
-    const { osc, gainNode } = toneOsc(ac, 800 + i * 50, 'square', 0.04, 0.06);
-    gainNode.gain.setValueAtTime(0.06, t + offset);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.04);
+    const offset = i * 0.09;
+    const { osc, gainNode } = toneOsc(ac, 350 + i * 30, 'square', 0.05, 0.07);
+    gainNode.gain.setValueAtTime(0.07, t + offset);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.05);
     osc.start(t + offset);
-    osc.stop(t + offset + 0.04);
-    const { source: n, gainNode: ng } = noise(ac, 0.03, 0.04, 4000, 'highpass');
-    ng.gain.setValueAtTime(0.04, t + offset);
-    ng.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.03);
+    osc.stop(t + offset + 0.05);
+    const { source: n, gainNode: ng } = noise(ac, 0.04, 0.05, 1500, 'bandpass');
+    ng.gain.setValueAtTime(0.05, t + offset);
+    ng.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.04);
     n.start(t + offset);
-    n.stop(t + offset + 0.03);
+    n.stop(t + offset + 0.04);
   }
 }
 
-// Quick bzz bzzz electricity
+// Light electrical - uses the leaf blower / air rush sound
 function playElectrical() {
   const ac = getCtx();
   const t = ac.currentTime;
-  // First bzz
-  const { osc: o1, gainNode: g1 } = toneOsc(ac, 120, 'sawtooth', 0.12, 0.1);
-  g1.gain.setValueAtTime(0.1, t);
-  g1.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
-  o1.start(t);
-  o1.stop(t + 0.12);
-  // Second bzzz (slightly longer)
-  const { osc: o2, gainNode: g2 } = toneOsc(ac, 130, 'sawtooth', 0.18, 0.12);
-  g2.gain.setValueAtTime(0.12, t + 0.15);
-  g2.gain.exponentialRampToValueAtTime(0.001, t + 0.33);
-  o2.start(t + 0.15);
-  o2.stop(t + 0.33);
-  // Add crackle
-  const { source, gainNode } = noise(ac, 0.33, 0.04, 6000, 'highpass');
-  gainNode.gain.setValueAtTime(0.02, t);
-  gainNode.gain.setValueAtTime(0.04, t + 0.15);
-  gainNode.gain.linearRampToValueAtTime(0, t + 0.33);
+  const { source, gainNode } = noise(ac, 0.5, 0.06, 700, 'lowpass');
+  gainNode.gain.setValueAtTime(0, t);
+  gainNode.gain.linearRampToValueAtTime(0.06, t + 0.1);
+  gainNode.gain.setValueAtTime(0.06, t + 0.35);
+  gainNode.gain.linearRampToValueAtTime(0, t + 0.5);
   source.start(t);
-  source.stop(t + 0.33);
+  source.stop(t + 0.5);
+  const { osc, gainNode: og } = toneOsc(ac, 95, 'sawtooth', 0.5, 0.03);
+  og.gain.setValueAtTime(0, t);
+  og.gain.linearRampToValueAtTime(0.03, t + 0.1);
+  og.gain.setValueAtTime(0.03, t + 0.35);
+  og.gain.linearRampToValueAtTime(0, t + 0.5);
+  osc.start(t);
+  osc.stop(t + 0.5);
 }
 
 // Leaf blower - sustained but gentle
@@ -189,22 +183,25 @@ function playGutterCleaning() {
   osc.stop(t + 0.5);
 }
 
-// Hammer hit
+// Hammer - a couple of strikes
 function playHandyman() {
   const ac = getCtx();
   const t = ac.currentTime;
-  const { osc, gainNode } = toneOsc(ac, 120, 'sine', 0.15, 0.25);
-  gainNode.gain.setValueAtTime(0.25, t);
-  gainNode.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
-  osc.frequency.setValueAtTime(120, t);
-  osc.frequency.exponentialRampToValueAtTime(60, t + 0.15);
-  osc.start(t);
-  osc.stop(t + 0.15);
-  const { source, gainNode: ng } = noise(ac, 0.06, 0.15, 3000, 'highpass');
-  ng.gain.setValueAtTime(0.15, t);
-  ng.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
-  source.start(t);
-  source.stop(t + 0.06);
+  for (let i = 0; i < 3; i++) {
+    const offset = i * 0.18;
+    const { osc, gainNode } = toneOsc(ac, 110, 'sine', 0.15, 0.22);
+    gainNode.gain.setValueAtTime(0.22, t + offset);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.15);
+    osc.frequency.setValueAtTime(110, t + offset);
+    osc.frequency.exponentialRampToValueAtTime(55, t + offset + 0.15);
+    osc.start(t + offset);
+    osc.stop(t + offset + 0.15);
+    const { source, gainNode: ng } = noise(ac, 0.05, 0.12, 2500, 'highpass');
+    ng.gain.setValueAtTime(0.12, t + offset);
+    ng.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.05);
+    source.start(t + offset);
+    source.stop(t + offset + 0.05);
+  }
 }
 
 // Door opening creak
