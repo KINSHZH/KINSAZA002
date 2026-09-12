@@ -62,12 +62,15 @@ Deno.serve(async (req: Request) => {
       .select("image_path")
       .eq("service_request_id", service_request_id);
 
-    const photoLinks = (images || []).map((img: { image_path: string }) => {
-      const { data } = supabase.storage
+    const photoLinks: string[] = [];
+    for (const img of (images || []) as { image_path: string }[]) {
+      const { data, error: signedErr } = await supabase.storage
         .from("service-request-images")
-        .getPublicUrl(img.image_path);
-      return data.publicUrl;
-    });
+        .createSignedUrl(img.image_path, 3600);
+      if (!signedErr && data?.signedUrl) {
+        photoLinks.push(data.signedUrl);
+      }
+    }
 
     const photoHtml =
       photoLinks.length > 0
