@@ -3,10 +3,26 @@ import { Link, useLocation } from 'react-router-dom';
 import { NAV_ITEMS, BUSINESS } from '@/lib/constants';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
 
-function SoundCloudIcon({ size = 16, color = '#ffff00' }: { size?: number; color?: string }) {
+function SoundCloudIcon({ size = 22, color = '#ffff00' }: { size?: number; color?: string }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} aria-hidden="true">
-      <path d="M1.5 13.5c-.3 0-.5.2-.5.5v3c0 .3.2.5.5.5s.5-.2.5-.5v-3c0-.3-.2-.5-.5-.5zm2-1c-.3 0-.5.2-.5.5v4c0 .3.2.5.5.5s.5-.2.5-.5v-4c0-.3-.2-.5-.5-.5zm2-1c-.3 0-.5.2-.5.5v5c0 .3.2.5.5.5s.5-.2.5-.5v-5c0-.3-.2-.5-.5-.5zm2-1c-.3 0-.5.2-.5.5v6c0 .3.2.5.5.5s.5-.2.5-.5v-6c0-.3-.2-.5-.5-.5zm2-1c-.3 0-.5.2-.5.5v7c0 .3.2.5.5.5s.5-.2.5-.5v-7c0-.3-.2-.5-.5-.5zm2.5-1c-.3 0-.5.2-.5.5v8c0 .3.2.5.5.5s.5-.2.5-.5v-8c0-.3-.2-.5-.5-.5zm2.5-1c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5z" />
+    <svg width={size} height={size} viewBox="0 0 48 24" fill="none" aria-hidden="true">
+      {/* Sound wave bars */}
+      <rect x="2" y="10" width="2" height="8" rx="1" fill={color} />
+      <rect x="6" y="8" width="2" height="12" rx="1" fill={color} />
+      <rect x="10" y="6" width="2" height="16" rx="1" fill={color} />
+      <rect x="14" y="9" width="2" height="10" rx="1" fill={color} />
+      <rect x="18" y="5" width="2" height="18" rx="1" fill={color} />
+      <rect x="22" y="7" width="2" height="14" rx="1" fill={color} />
+      <rect x="26" y="9" width="2" height="10" rx="1" fill={color} />
+      {/* Cloud body */}
+      <path
+        d="M30 20c-3.3 0-6-2.7-6-6 0-2.6 1.7-4.8 4-5.7C28.7 5.9 31.2 4 34 4c3.9 0 7 3.1 7 7 0 .3 0 .7-.1 1H44c1.7 0 3 1.3 3 3s-1.3 3-3 3H30z"
+        fill={color}
+      />
+      {/* Cloud cutout for wave effect */}
+      <rect x="32" y="10" width="2" height="6" rx="1" fill="#000040" />
+      <rect x="36" y="8" width="2" height="10" rx="1" fill="#000040" />
+      <rect x="40" y="11" width="2" height="6" rx="1" fill="#000040" />
     </svg>
   );
 }
@@ -76,7 +92,7 @@ export function Header() {
           aria-label="SoundCloud"
           style={{ display: 'flex', alignItems: 'center', padding: '0 8px' }}
         >
-          <SoundCloudIcon size={18} color="#ffff00" />
+          <SoundCloudIcon size={28} color="#ffff00" />
         </a>
       </nav>
 
@@ -109,7 +125,7 @@ export function Header() {
             aria-label="SoundCloud"
             style={{ display: 'flex', alignItems: 'center', padding: '8px 20px' }}
           >
-            <SoundCloudIcon size={18} color="#ffff00" />
+            <SoundCloudIcon size={28} color="#ffff00" />
           </a>
         </nav>
       )}
