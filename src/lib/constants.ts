@@ -14,6 +14,7 @@ export const NAV_ITEMS = [
   { label: 'PROJECTS', path: '/projects' },
   { label: 'REQUEST SERVICE', path: '/request-service' },
   { label: 'CONTACT', path: '/contact' },
+  { label: 'EBAY STORE', path: 'https://www.ebay.com/usr/kinsaza', external: true },
 ];
 
 export function formatCurrency(amount: number, currency: string = 'usd'): string {

@@ -42,19 +42,16 @@ export function Header() {
 
       <nav className="nav-bar desktop" aria-label="Main navigation">
         {NAV_ITEMS.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={isActive(item.path) ? 'active' : ''}
-          >
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-
-      {menuOpen && (
-        <nav className="nav-bar mobile open" aria-label="Mobile navigation">
-          {NAV_ITEMS.map((item) => (
+          item.external ? (
+            <a
+              key={item.path}
+              href={item.path}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {item.label}
+            </a>
+          ) : (
             <Link
               key={item.path}
               to={item.path}
@@ -62,6 +59,31 @@ export function Header() {
             >
               {item.label}
             </Link>
+          )
+        ))}
+      </nav>
+
+      {menuOpen && (
+        <nav className="nav-bar mobile open" aria-label="Mobile navigation">
+          {NAV_ITEMS.map((item) => (
+            item.external ? (
+              <a
+                key={item.path}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={isActive(item.path) ? 'active' : ''}
+              >
+                {item.label}
+              </Link>
+            )
           ))}
         </nav>
       )}
