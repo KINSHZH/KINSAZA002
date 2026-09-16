@@ -3,6 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { NAV_ITEMS, BUSINESS } from '@/lib/constants';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
 
+function SoundCloudIcon({ size = 16, color = '#ffff00' }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} aria-hidden="true">
+      <path d="M1.5 13.5c-.3 0-.5.2-.5.5v3c0 .3.2.5.5.5s.5-.2.5-.5v-3c0-.3-.2-.5-.5-.5zm2-1c-.3 0-.5.2-.5.5v4c0 .3.2.5.5.5s.5-.2.5-.5v-4c0-.3-.2-.5-.5-.5zm2-1c-.3 0-.5.2-.5.5v5c0 .3.2.5.5.5s.5-.2.5-.5v-5c0-.3-.2-.5-.5-.5zm2-1c-.3 0-.5.2-.5.5v6c0 .3.2.5.5.5s.5-.2.5-.5v-6c0-.3-.2-.5-.5-.5zm2-1c-.3 0-.5.2-.5.5v7c0 .3.2.5.5.5s.5-.2.5-.5v-7c0-.3-.2-.5-.5-.5zm2.5-1c-.3 0-.5.2-.5.5v8c0 .3.2.5.5.5s.5-.2.5-.5v-8c0-.3-.2-.5-.5-.5zm2.5-1c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5zm2.5 0c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5s.5-.2.5-.5v-9c0-.3-.2-.5-.5-.5z" />
+    </svg>
+  );
+}
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -61,6 +69,15 @@ export function Header() {
             </Link>
           )
         ))}
+        <a
+          href="https://soundcloud.com/kinsaza"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="SoundCloud"
+          style={{ display: 'flex', alignItems: 'center', padding: '0 8px' }}
+        >
+          <SoundCloudIcon size={18} color="#ffff00" />
+        </a>
       </nav>
 
       {menuOpen && (
@@ -85,6 +102,15 @@ export function Header() {
               </Link>
             )
           ))}
+          <a
+            href="https://soundcloud.com/kinsaza"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="SoundCloud"
+            style={{ display: 'flex', alignItems: 'center', padding: '8px 20px' }}
+          >
+            <SoundCloudIcon size={18} color="#ffff00" />
+          </a>
         </nav>
       )}
     </>
